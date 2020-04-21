@@ -1,0 +1,242 @@
+{
+	"info": {
+		"_postman_id": "6b9047c5-ccdd-4f64-b399-369e551e1328",
+		"name": "FireStore Custom Token",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getCustomToken",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://us-central1-firetestjimis.cloudfunctions.net/getCustomToken",
+					"protocol": "https",
+					"host": [
+						"us-central1-firetestjimis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"getCustomToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verifyCustomToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"token\":\"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImlhdCI6MTU4NzQ4NjI0NiwiZXhwIjoxNTg3NDg5ODQ2LCJpc3MiOiJmaXJlYmFzZS1hZG1pbnNkay1sdTk3YUBhbmd1bGFyLWZpcmViYXNlLWF1dGgwLTNjMDg0LmlhbS5nc2VydmljZWFjY291bnQuY29tIiwic3ViIjoiZmlyZWJhc2UtYWRtaW5zZGstbHU5N2FAYW5ndWxhci1maXJlYmFzZS1hdXRoMC0zYzA4NC5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInVpZCI6Ik5TQkZ1MllKTkRnTFFKQ1o5OWRSSmxQNERSbzIifQ.fSe8ONIHBgoeVg4OkTSemykq4RoFb5TOiHOq52zKiiXCfywmdGAtqZyAWfM_dz-knP4mbSyJM9N3T2A_GQ0fV6AGTlq3lalDaptQPfYX4B7MOiA6YODJSDXGyGVHbdF88MmtNzESszbivF7RoFTBanyawVa9dwy83-84_2nJHylqmq055oFurd-WkM-gnfjyRBvGzQmZp7l76dV1rzRiKg8_ctiO8SOwD84KriXQj6DL-LFze7wb6XJSCJ52epXH0FvjALsB4R1eqCDHAJ3COfEYWiE0Vn5LWhj6yFvtSG3vqLqXy79EDkoXVPw0IJNiBSE4e3gfmat12M9peJEoTw\",\"returnSecureToken\":true}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken?key=AIzaSyDAd03oo5fPgV2l--oMWZ2Y23DCGihK3xs",
+					"protocol": "https",
+					"host": [
+						"www",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"identitytoolkit",
+						"v3",
+						"relyingparty",
+						"verifyCustomToken"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "AIzaSyDAd03oo5fPgV2l--oMWZ2Y23DCGihK3xs"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Document to Collection with Custom Token",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjBiYWJiMjI0NDBkYTAzMmM1ZDAwNDJjZGFhOWQyODVjZjhkMjAyYzQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZmlyZXRlc3RqaW1pcyIsImF1ZCI6ImZpcmV0ZXN0amltaXMiLCJhdXRoX3RpbWUiOjE1ODc0OTQ3MDgsInVzZXJfaWQiOiJOU0JGdTJZSk5EZ0xRSkNaOTlkUkpsUDREUm8yIiwic3ViIjoiTlNCRnUyWUpORGdMUUpDWjk5ZFJKbFA0RFJvMiIsImlhdCI6MTU4NzQ5NDcwOCwiZXhwIjoxNTg3NDk4MzA4LCJlbWFpbCI6ImppbWlzLmRycGNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbImppbWlzLmRycGNAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiY3VzdG9tIn19.hx7n3ilfKirGCVHgL0MnQJ3_QGAozdzDjNaroTdF-J7rEP5wyxi2GOsNB6iyAx0S8TKp2uBa8935OXPaCo4LawjV69RnCQGWDY8b8bpICvp0-OJyh9ITLScHPQuVPvYPiBYbFh0Nj_jxR5Z5Fi3MDQAFHS_uuX9lT_csdDkq6kfcrsdu_mxYNhtYnRibKNWPtEEkvyMejerSUH8NY8yPJRXFm307PZGVsSyx1Qq_nane06_8NPSEi2vcdNkcvoKQMSPmKvdOXlU_BR7WoiVwp-pdbLoIbRRUfVonIvPvUIwOURgErTLVvYctKL-DMhzd_oTUL-aBxnfHLTX5AQYpwg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"fields\": {\r\n    \"id\": {\r\n      \"stringValue\": \"7\"\r\n    },  \t\r\n    \"status\": {\r\n      \"stringValue\": \"em andamento\"\r\n    }\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://firestore.googleapis.com/v1/projects/firetestjimis/databases/(default)/documents/transfer",
+					"protocol": "https",
+					"host": [
+						"firestore",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"v1",
+						"projects",
+						"firetestjimis",
+						"databases",
+						"(default)",
+						"documents",
+						"transfer"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "AIzaSyAz_JiqW1N-bsTOjLglMj51Wf5UIJdqwh8",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update with commit (Custom Token)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjVlOWVlOTdjODQwZjk3ZTAyNTM2ODhhM2I3ZTk0NDczZTUyOGE3YjUiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZmlyZXRlc3RqaW1pcyIsImF1ZCI6ImZpcmV0ZXN0amltaXMiLCJhdXRoX3RpbWUiOjE1ODc0Nzk2NDksInVzZXJfaWQiOiJOU0JGdTJZSk5EZ0xRSkNaOTlkUkpsUDREUm8yIiwic3ViIjoiTlNCRnUyWUpORGdMUUpDWjk5ZFJKbFA0RFJvMiIsImlhdCI6MTU4NzQ3OTY0OSwiZXhwIjoxNTg3NDgzMjQ5LCJlbWFpbCI6ImppbWlzLmRycGNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbImppbWlzLmRycGNAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiY3VzdG9tIn19.YGyV1fdpRpnwYLjI-ZuVjvLycsFWGIvPZIQsWADWGBCwvZsgDJSgZ_3Jwtw_tsif1wSbqOqyz8XC-k6Yg2lk48bG_DMSDw74nrpvX5MoLXtuV6hMDBqoxaYW_5owEBm71QZaeyTzBw0V7hvPp07uNbVh2FW4w4HnFvditg1Z1hpwUMvF6HweQSmDmXgCnN1Nxw5vNZkCObrvxAfH4YK8AYiIvzIj_z_3MEzr3In3pn7L-KAtxR_e_RHzESosTgyxILI3e8y5vRu6MhdcULcdwv6Ls-2uAl6Ub4WrnsAlZkX54X9ZJyt2Yx9CUkyoEd_bdvhY2tH2e24rMnb-uJRHRA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"writes\": [\n        {\n            \"update\": {\n                \"name\": \"projects/firetestjimis/databases/(default)/documents/transfer/oyV6wnV5JTfWwLVLRYdO\",\n                \"fields\": {\n                    \"id\": {\n                        \"stringValue\": \"5\"\n                    },\n                    \"status\": {\n                        \"stringValue\": \"transferido\"\n                    }\n                }\n            }\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://firestore.googleapis.com/v1/projects/firetestjimis/databases/(default)/documents:commit",
+					"protocol": "https",
+					"host": [
+						"firestore",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"v1",
+						"projects",
+						"firetestjimis",
+						"databases",
+						"(default)",
+						"documents:commit"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "AIzaSyAz_JiqW1N-bsTOjLglMj51Wf5UIJdqwh8",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "runQuery",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"structuredQuery\": {\r\n    \"where\" : {\r\n        \"fieldFilter\" : { \r\n        \"field\": {\"fieldPath\": \"id\"}, \r\n        \"op\":\"EQUAL\", \r\n        \"value\": {\"stringValue\": \"4\"}\r\n        }\r\n    },\r\n    \"from\": [{\"collectionId\": \"transfer\"}]\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://firestore.googleapis.com/v1/projects/firetestjimis/databases/(default)/documents:runQuery",
+					"protocol": "https",
+					"host": [
+						"firestore",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"v1",
+						"projects",
+						"firetestjimis",
+						"databases",
+						"(default)",
+						"documents:runQuery"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signInWithCustomToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"token\":\"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImlhdCI6MTU4NzQ5NjQwNSwiZXhwIjoxNTg3NTAwMDA1LCJpc3MiOiJmaXJlYmFzZS1hZG1pbnNkay1mZzZwOUBmaXJldGVzdGppbWlzLmlhbS5nc2VydmljZWFjY291bnQuY29tIiwic3ViIjoiZmlyZWJhc2UtYWRtaW5zZGstZmc2cDlAZmlyZXRlc3RqaW1pcy5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInVpZCI6Ik5TQkZ1MllKTkRnTFFKQ1o5OWRSSmxQNERSbzIifQ.niqCRpViimRuq57BKIaYE8ZtufnUleEVifxd7rWuvXX5hlFd7ajJUDEycWp_HJz7b5BtEAkhUhwqXwkSUhu9mPA3Fspfp0YcoIRnYd3-4Y33n4BlJ_FOSLeeuICeVtV2zYZ-mhbzabgsG56ZPhCa0XaWULmbOBtYIwBaaWK847jH9YOWyXDC4Dzl2abDtLcjgmjJEDp5xHQomPf91ciVo08zUwalWiUawK3oTRUxKvqRadFapu0xAOHKb2zptorz6xC0_dj6UjroFeDz_Ts1Q9TEMqUuRzXtUYtBm32Qi44_UnXYZPqqGbiXqXITpqE2EU1cRv445VHhFhbG2DEUnw\",\"returnSecureToken\":true}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=AIzaSyDAd03oo5fPgV2l--oMWZ2Y23DCGihK3xs",
+					"protocol": "https",
+					"host": [
+						"identitytoolkit",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"v1",
+						"accounts:signInWithCustomToken"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "AIzaSyDAd03oo5fPgV2l--oMWZ2Y23DCGihK3xs"
+						}
+					]
+				},
+				"description": "https://firebase.google.com/docs/reference/rest/auth/"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
