@@ -1,0 +1,21 @@
+{
+  "name": "firebase-auth0-nodeserver",
+  "version": "0.1.0",
+  "description": "Node.js server to provide custom auth token.",
+  "repository": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server"
+  },
+  "author": "Auth0",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-jwt": "^5.3.3",
+    "firebase-admin": "^8.10.0",
+    "jwks-rsa": "^1.8.0"
+  },
+  "devDependencies": {}
+}

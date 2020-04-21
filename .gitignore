@@ -5,6 +5,10 @@
 .classpath
 HELP.md
 
+#NodeJs
+config.js
+node_modules
+
 #Java
 #https://labs.consol.de/development/git/2017/02/22/gitignore.html
 target/

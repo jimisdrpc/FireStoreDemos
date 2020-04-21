@@ -1,0 +1,1 @@
+Servidor no Firebase Function Cloud que retorna um custom token para o usuário do Firestore firetestjimis com usuário jimis.drpc@gmail.com
