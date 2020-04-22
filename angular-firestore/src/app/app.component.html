@@ -1,0 +1,8 @@
+<!-- <div>{{(uniqueTransfer|async)?.status}}</div> -->
+
+<label><b>FireStore</b></label>
+<ul>
+  <li *ngFor="let transfer of transfers | async">
+    <pre>{{ transfer | json }}</pre>
+  </li>
+</ul> 

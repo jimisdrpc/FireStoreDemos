@@ -1,43 +1,5 @@
-#Eclipse
-.metadata
-.settings
-.project*
-.classpath
-HELP.md
+# See http://help.github.com/ignore-files/ for more about ignoring files.
 
-#NodeJs
-config.js
-node_modules
-package-lock.json
-
-#Java
-#https://labs.consol.de/development/git/2017/02/22/gitignore.html
-target/
-target
-/target
-/target/
-*.class
-
-
-#Maven
-mvn/
-mvn
-/mvn
-/mvn/
-.mvn
-mvnw
-mvnw.cmd
-
-#Visual Studio Code
-.editorconfig
-.vscode
-node_modules/
-node_modules
-/node_modules
-/node_modules/
-.bin/
-
-#Added by Angular IDE
 # compiled output
 /dist
 /tmp
