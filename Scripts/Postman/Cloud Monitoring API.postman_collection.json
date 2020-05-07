@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "fa279bb8-ada9-4cd8-ac4e-5c23c1503c19",
+		"name": "Cloud Monitoring API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Monitoring Google APIs",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-length": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "ya29.a0Ae4lvC3RUb5Ad-LxepiFMEOVUMfeaVBXr6S5hAoam7n6qiYa4W5h3MVXaD9NVrH0g9Ypt6yJA5gz2pf8Q4GDgezmPszhZ-GbWYTvzcn3INhHyjWy0HlynNcrN-uYWSwnGggF5Gwn7yAOnbImKgOPyqLAcdPBMibhd7hu",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://monitoring.googleapis.com/v1/projects/firetestjimis/dashboards",
+					"protocol": "https",
+					"host": [
+						"monitoring",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"v1",
+						"projects",
+						"firetestjimis",
+						"dashboards"
+					]
+				},
+				"description": "gcloud auth application-default login\n\ngcloud auth application-default print-access-token"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Info from Dashboard",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "ya29.a0Ae4lvC3RUb5Ad-LxepiFMEOVUMfeaVBXr6S5hAoam7n6qiYa4W5h3MVXaD9NVrH0g9Ypt6yJA5gz2pf8Q4GDgezmPszhZ-GbWYTvzcn3INhHyjWy0HlynNcrN-uYWSwnGggF5Gwn7yAOnbImKgOPyqLAcdPBMibhd7hu",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://monitoring.googleapis.com/v3/projects/firetestjimis/timeSeries?filter=metric.type%20%3D%20%22firestore.googleapis.com%2Fdocument%2Fread_count%22&interval.endTime=2020-05-07T15:01:23.045123456Z&interval.startTime=2020-05-05T15:01:23.045123456Z",
+					"protocol": "https",
+					"host": [
+						"monitoring",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"v3",
+						"projects",
+						"firetestjimis",
+						"timeSeries"
+					],
+					"query": [
+						{
+							"key": "filter",
+							"value": "metric.type%20%3D%20%22firestore.googleapis.com%2Fdocument%2Fread_count%22"
+						},
+						{
+							"key": "interval.endTime",
+							"value": "2020-05-07T15:01:23.045123456Z"
+						},
+						{
+							"key": "interval.startTime",
+							"value": "2020-05-05T15:01:23.045123456Z"
+						}
+					]
+				},
+				"description": "gcloud auth application-default login\r\n\r\ngcloud auth application-default print-access-token"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
