@@ -52,7 +52,7 @@
 					"oauth2": [
 						{
 							"key": "accessToken",
-							"value": "ya29.a0Ae4lvC3RUb5Ad-LxepiFMEOVUMfeaVBXr6S5hAoam7n6qiYa4W5h3MVXaD9NVrH0g9Ypt6yJA5gz2pf8Q4GDgezmPszhZ-GbWYTvzcn3INhHyjWy0HlynNcrN-uYWSwnGggF5Gwn7yAOnbImKgOPyqLAcdPBMibhd7hu",
+							"value": "ya29.a0AfH6SMDcmPL0UmbokavuTNIyoGAoncbgaSM-barRAh5A7PBoHrfi1zHaZZqMWQsYy71eL5ISMtwAcqyoOp3s5EsEqdo930S7cHwjrsBx-3qPwfaxidG1LnvLb4z9CJjiC03wlnsi5fH2iS_fOdEVNj-vvfjLXrcyizk",
 							"type": "string"
 						},
 						{
@@ -65,7 +65,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://monitoring.googleapis.com/v3/projects/firetestjimis/timeSeries?filter=metric.type%20%3D%20%22firestore.googleapis.com%2Fdocument%2Fread_count%22&interval.endTime=2020-05-07T15:01:23.045123456Z&interval.startTime=2020-05-05T15:01:23.045123456Z",
+					"raw": "https://monitoring.googleapis.com/v3/projects/firetestjimis/timeSeries?filter=metric.type%20%3D%20%22firestore.googleapis.com%2Fdocument%2Fread_count%22&interval.endTime=2020-05-21T21:50:00.045123456Z&interval.startTime=2020-05-20T21:30:00.045123456Z",
 					"protocol": "https",
 					"host": [
 						"monitoring",
@@ -85,15 +85,68 @@
 						},
 						{
 							"key": "interval.endTime",
-							"value": "2020-05-07T15:01:23.045123456Z"
+							"value": "2020-05-21T21:50:00.045123456Z"
 						},
 						{
 							"key": "interval.startTime",
-							"value": "2020-05-05T15:01:23.045123456Z"
+							"value": "2020-05-20T21:30:00.045123456Z"
 						}
 					]
 				},
 				"description": "gcloud auth application-default login\r\n\r\ngcloud auth application-default print-access-token"
+			},
+			"response": []
+		},
+		{
+			"name": "How Many Snapshot listeners",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "ya29.a0AfH6SMDJQbQvjb3SuuvKS9jsDdvPgudPQwDD6_20CZZlcVv_nRMNGxlSYtQbgt9_PBS3aGGuNcr0hOvoyt9x5-NPYjIzBGDSmToHhwBcmYKGP575Fgvepb0OYgKLGi9lMBOfDO0bpogx71w8hAPKwBoJL8GjDqxTsaFV",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://monitoring.googleapis.com/v3/projects/firetestjimis/timeSeries?filter=metric.type%20%3D%20%22firestore.googleapis.com%2Fnetwork%2Fsnapshot_listeners%22&interval.endTime=2020-05-21T21%3A50%3A00.045123456Z&interval.startTime=2020-05-20T21%3A30%3A00.045123456Z",
+					"protocol": "https",
+					"host": [
+						"monitoring",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"v3",
+						"projects",
+						"firetestjimis",
+						"timeSeries"
+					],
+					"query": [
+						{
+							"key": "filter",
+							"value": "metric.type%20%3D%20%22firestore.googleapis.com%2Fnetwork%2Fsnapshot_listeners%22"
+						},
+						{
+							"key": "interval.endTime",
+							"value": "2020-05-21T21%3A50%3A00.045123456Z"
+						},
+						{
+							"key": "interval.startTime",
+							"value": "2020-05-20T21%3A30%3A00.045123456Z"
+						}
+					]
+				},
+				"description": "Learned from https://stackoverflow.com/questions/61550776/how-get-a-metric-sample-from-monitoring-apis\r\n\r\n1 - Token from:\r\ngcloud auth application-default print-access-token\r\nor sign in Browser\r\n\r\n2 - Filter copied from:\r\n\r\nhttps://cloud.google.com/monitoring/api/metrics_gcp#gcp-firestore\r\n\r\n3 - Rest API copied from:\r\n\r\nhttps://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list?apix_params=%7B%22name%22%3A%22projects%2Ffiretestjimis%22%2C%22filter%22%3A%22metric.type%20%3D%20%5C%22firestore.googleapis.com%2Fnetwork%2Fsnapshot_listeners%5C%22%22%2C%22interval.endTime%22%3A%222020-05-21T21%3A50%3A00.045123456Z%22%2C%22interval.startTime%22%3A%222020-05-20T21%3A30%3A00.045123456Z%22%7D#http-request\r\n\r\n4 - Resulted in:\r\n\r\nhttps://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list?apix=true&apix_params=%7B%22name%22%3A%22projects%2Ffiretestjimis%22%2C%22filter%22%3A%22metric.type%20%3D%20%5C%22firestore.googleapis.com%2Fnetwork%2Fsnapshot_listeners%5C%22%22%2C%22interval.endTime%22%3A%222020-05-21T21%3A50%3A00.045123456Z%22%2C%22interval.\r\nstartTime%22%3A%222020-05-20T21%3A30%3A00.045123456Z%22%7D"
 			},
 			"response": []
 		}
