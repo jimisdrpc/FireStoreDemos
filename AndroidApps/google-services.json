@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "795318872350",
+    "firebase_url": "https://firetestjimis.firebaseio.com",
+    "project_id": "firetestjimis",
+    "storage_bucket": "firetestjimis.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:795318872350:android:01ad915a2ebb2ec8dc810f",
+        "android_client_info": {
+          "package_name": "com.example.demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "795318872350-8gpngdri07pbrfqtrcpsdu68ociuueir.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGClWE4IPyj0KPheqHqOyrBsr_0cs_uq8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "795318872350-5d4kg3qrqtj0jbilrdrjrkemu101gg0o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
