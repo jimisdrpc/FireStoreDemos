@@ -1,0 +1,2 @@
+rootProject.name='AppFirestore'
+include ':app'
