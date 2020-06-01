@@ -23,6 +23,8 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var auth: FirebaseAuth
 
+    lateinit var listenerReg : FirebaseFirestore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -50,17 +52,19 @@ class MainActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<Transfer>, response: Response<Transfer>) {
                 //textViewTransfer.text = response.body().toString()
-                listenStatus()
+                response.body()?.token?.let { listenStatus(it) }
             }
         })
 
     }
 
-    fun listenStatus() {
+    fun listenStatus(token: String) {
         val TAG = "ListenStatus"
         auth = FirebaseAuth.getInstance()
 
-        auth.signInWithCustomToken("eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImlhdCI6MTU5MTAzNzUzNSwiZXhwIjoxNTkxMDQxMTM1LCJpc3MiOiJmaXJlYmFzZS1hZG1pbnNkay1mZzZwOUBmaXJldGVzdGppbWlzLmlhbS5nc2VydmljZWFjY291bnQuY29tIiwic3ViIjoiZmlyZWJhc2UtYWRtaW5zZGstZmc2cDlAZmlyZXRlc3RqaW1pcy5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInVpZCI6Ik5TQkZ1MllKTkRnTFFKQ1o5OWRSSmxQNERSbzIifQ.wfcnWlA5DvFUBRfVWjNizxRWQ3VygPOcD_gl6ijF10c0uw3fLzL08iSo3DAzrazPrE1cqRfmlQvR1duhaNiSOoZvPyvR1rdk4Nsvc5F9r4x7YVpBrusD79wOlPbS7eSTr5rX2n6Wm9jd6kmUr_ThKpoMTUcb4HFul442SlRwKIANDEmeB0JDtpXh4G8cQ5vdIAJ5OWEWKrFmdYakLUSveyifdskN3ozxb6b4E2dVIMn7Fest1XE3HtzbGIrkqScihmYURAS06b2xtyRf-EEwbB8tfsbe-Sj3NiGanzi0ZIz7wyyo0RCBunVbU6zRpDBjEgf5KlEZZZyhD6J39BgXsQ")
+        auth
+            .signInWithCustomToken(token)
+            //.signInWithCustomToken("eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImlhdCI6MTU5MTAzNzUzNSwiZXhwIjoxNTkxMDQxMTM1LCJpc3MiOiJmaXJlYmFzZS1hZG1pbnNkay1mZzZwOUBmaXJldGVzdGppbWlzLmlhbS5nc2VydmljZWFjY291bnQuY29tIiwic3ViIjoiZmlyZWJhc2UtYWRtaW5zZGstZmc2cDlAZmlyZXRlc3RqaW1pcy5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInVpZCI6Ik5TQkZ1MllKTkRnTFFKQ1o5OWRSSmxQNERSbzIifQ.wfcnWlA5DvFUBRfVWjNizxRWQ3VygPOcD_gl6ijF10c0uw3fLzL08iSo3DAzrazPrE1cqRfmlQvR1duhaNiSOoZvPyvR1rdk4Nsvc5F9r4x7YVpBrusD79wOlPbS7eSTr5rX2n6Wm9jd6kmUr_ThKpoMTUcb4HFul442SlRwKIANDEmeB0JDtpXh4G8cQ5vdIAJ5OWEWKrFmdYakLUSveyifdskN3ozxb6b4E2dVIMn7Fest1XE3HtzbGIrkqScihmYURAS06b2xtyRf-EEwbB8tfsbe-Sj3NiGanzi0ZIz7wyyo0RCBunVbU6zRpDBjEgf5KlEZZZyhD6J39BgXsQ")
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "*** signInWithCustomToken:success")
@@ -83,7 +87,9 @@ class MainActivity : AppCompatActivity() {
         //Try to pass this(activity context) as first parameter.It will automatically handle acivity life cycle.
         // Example if you are calling this listener in onCreate() and passing this as a first parameter then
         // it will remove this listener in onDestroy() method of activity.
-        val listenerReg = FirebaseFirestore.getInstance().collection("transfer")
+        listenerReg = FirebaseFirestore.getInstance()
+
+        listenerReg.collection("transfer")
             .document("sDme6IRIi4ezfeyfrU7y")
             .addSnapshotListener(
                 this,
@@ -101,30 +107,6 @@ class MainActivity : AppCompatActivity() {
                 })
 
 
-        //search accroos all collection
-//        FirebaseFirestore.getInstance().collection("transfer")
-//            .whereEqualTo("id", "1")
-//            .addSnapshotListener { value, e ->
-//                if (e != null) {
-//                    Log.w(TAG, "Listen failed.", e)
-//                    return@addSnapshotListener
-//                }
-//
-//                val transfer = ArrayList<String>()
-//                for (doc in value!!) {
-//                    doc.getString("status")?.let {
-//                        transfer.add(it)
-//                    }
-//                }
-//
-//                Log.d(TAG, "*** transfer: $transfer")
-//            }
     }
 
-//    override fun onStop() {
-//        super.onStop()
-//        if (listenerReg != null) {
-//            listenerReg.remove()
-//        }
-//    }
 }

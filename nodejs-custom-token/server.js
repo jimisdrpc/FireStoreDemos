@@ -13,18 +13,31 @@ exports.serviceAccount = {
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fg6p9%40firetestjimis.iam.gserviceaccount.com"
 }
 
- admin.initializeApp({
-   credential: admin.credential.cert(exports.serviceAccount)
+admin.initializeApp({
+  credential: admin.credential.cert(exports.serviceAccount)
 });
 
 var uid = "NSBFu2YJNDgLQJCZ99dRJlP4DRo2"; //copied from https://console.firebase.google.com/project/firetestjimis/authentication/users
 var claim = {
   control: true
 };
-admin.auth().createCustomToken(uid)
-  .then(function (customToken) {
-    console.log(customToken)
-  })
-  .catch(function (error) {
-    console.log("Error creating custom token:", error);
-  });
+
+var express = require("express");
+var app = express();
+
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
+});
+
+app.get("/customtoken", (req, res, next) => {
+
+  admin.auth().createCustomToken(uid)
+    .then(function (customToken) {
+      res.json(customToken);
+    })
+    .catch(function (error) {
+      console.log("Error creating custom token:", error);
+    });
+
+});
+
