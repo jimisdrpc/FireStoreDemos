@@ -1,9 +1,9 @@
 package com.mycomp.appfirestore
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -22,15 +22,13 @@ import retrofit2.Response
 class MainActivity : AppCompatActivity() {
 
     lateinit var auth: FirebaseAuth
-
-    lateinit var listenerReg : FirebaseFirestore
+    var listenerReg : FirebaseFirestore? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val btnTransfer = findViewById(R.id.btnTransfer) as Button
-        val textViewTransfer = findViewById(R.id.textViewTransfer) as TextView
         btnTransfer.setOnClickListener {
             postTransfer()
         }
@@ -51,7 +49,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onResponse(call: Call<Transfer>, response: Response<Transfer>) {
-                //textViewTransfer.text = response.body().toString()
                 response.body()?.token?.let { listenStatus(it) }
             }
         })
@@ -64,7 +61,6 @@ class MainActivity : AppCompatActivity() {
 
         auth
             .signInWithCustomToken(token)
-            //.signInWithCustomToken("eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImlhdCI6MTU5MTAzNzUzNSwiZXhwIjoxNTkxMDQxMTM1LCJpc3MiOiJmaXJlYmFzZS1hZG1pbnNkay1mZzZwOUBmaXJldGVzdGppbWlzLmlhbS5nc2VydmljZWFjY291bnQuY29tIiwic3ViIjoiZmlyZWJhc2UtYWRtaW5zZGstZmc2cDlAZmlyZXRlc3RqaW1pcy5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInVpZCI6Ik5TQkZ1MllKTkRnTFFKQ1o5OWRSSmxQNERSbzIifQ.wfcnWlA5DvFUBRfVWjNizxRWQ3VygPOcD_gl6ijF10c0uw3fLzL08iSo3DAzrazPrE1cqRfmlQvR1duhaNiSOoZvPyvR1rdk4Nsvc5F9r4x7YVpBrusD79wOlPbS7eSTr5rX2n6Wm9jd6kmUr_ThKpoMTUcb4HFul442SlRwKIANDEmeB0JDtpXh4G8cQ5vdIAJ5OWEWKrFmdYakLUSveyifdskN3ozxb6b4E2dVIMn7Fest1XE3HtzbGIrkqScihmYURAS06b2xtyRf-EEwbB8tfsbe-Sj3NiGanzi0ZIz7wyyo0RCBunVbU6zRpDBjEgf5KlEZZZyhD6J39BgXsQ")
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "*** signInWithCustomToken:success")
@@ -89,7 +85,7 @@ class MainActivity : AppCompatActivity() {
         // it will remove this listener in onDestroy() method of activity.
         listenerReg = FirebaseFirestore.getInstance()
 
-        listenerReg.collection("transfer")
+        listenerReg!!.collection("transfer")
             .document("sDme6IRIi4ezfeyfrU7y")
             .addSnapshotListener(
                 this,
@@ -100,13 +96,21 @@ class MainActivity : AppCompatActivity() {
                     }
                     if (snapshot != null && snapshot.exists()) {
                         textViewTransfer.text = snapshot.data!!["status"].toString()
-                        //Log.d(TAG, snapshot.data!!["status"].toString())
                     } else {
                         Log.d(TAG, "Current data: null")
                     }
                 })
 
 
+        Handler().postDelayed({
+            stopSnapshot()
+        }, 1000 * 60 * 2) //stop after 2 minutes
     }
 
+    fun stopSnapshot() {
+        if (listenerReg != null) {
+            listenerReg!!.terminate()
+            listenerReg = null
+        }
+    }
 }
